@@ -11,13 +11,9 @@ return {
 				sources = {
 					-- https://github.com/nvimtools/none-ls.nvim/blob/main/doc/BUILTINS.md
 					null_ls.builtins.formatting.stylua,
-					null_ls.builtins.formatting.clang_format,
-					null_ls.builtins.diagnostics.clazy.with({
-						extra_args = { "-p=$ROOT/build" },
-					}),
---					null_ls.builtins.diagnostics.check,
+					-- null_ls.builtins.formatting.clang_format,
 					null_ls.builtins.completion.spell,
-					require("none-ls.diagnostics.cpplint"),
+					-- require("none-ls.diagnostics.cpplint"),
 				},
 			})
 			null_ls.register(require("none-ls-shellcheck.diagnostics"))

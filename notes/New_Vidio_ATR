@@ -1,0 +1,22 @@
+
+newVideoArt
+  make new engine (engines/detectionEngins/segmentationEngine)
+    * make as library
+    * only my link engine to my detector
+    * Does the AI processing
+  make new detector (detector/segmentationDetector)
+    * Does the output
+
+
+Note: Make sure to create DetectorEnginBass::getEngine link it is in TenssorrtDetector.cpp
+
+submit mesurments gets called once per frame, and might be where we need to save off points per frame. (Currently in newer branch).
+
+Definitions:
+- Engins works with the lowerlevel utils to make detections
+- Detector sucks up detection and calls make mesurements.
+
+Submit messure might need to be handeled for empty
+
+At makeMessure, write out vector.
+

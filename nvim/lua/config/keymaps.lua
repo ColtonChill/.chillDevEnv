@@ -4,8 +4,10 @@ vim.cmd("noremap <A-j> <C-w>j")
 vim.cmd("noremap <A-k> <C-w>k")
 vim.cmd("noremap <A-l> <C-w>l")
 
+
 -- Telescope
 local builtin = require("telescope.builtin")
+-- todo: Figure out how to get whichkey to take intermediate prompts
 -- vim.keymap.set('n', '<leader>f',{desc="Telescope cmds"})
 vim.keymap.set("n", "<leader>ff", builtin.find_files, {})
 vim.keymap.set("n", "<leader>fg", builtin.live_grep, {})
@@ -13,13 +15,16 @@ vim.keymap.set("n", "<leader>fb", builtin.buffers, {})
 vim.keymap.set("n", "<leader>fh", builtin.help_tags, {})
 vim.keymap.set("n", "<leader>fr", builtin.resume, { noremap = true })
 
+
 -- Neo-tree
 vim.keymap.set("n", "<leader>e", ":Neotree toggle filesystem reveal left<CR>", { desc = "Open Neotree" })
 
+
 -- LSP hover docs
--- vim.keymap.set('n', '<space>1', vim.diagnostic.open_float)
-vim.keymap.set("n", "[d", vim.diagnostic.goto_prev)
-vim.keymap.set("n", "]d", vim.diagnostic.goto_next)
+-- TODO: Need to finish setting up diagnostic toggles
+vim.keymap.set('n', '<space>[', vim.diagnostic.open_float)
+--vim.keymap.set("n", "jd", vim.diagnostic.goto_prev)
+--vim.keymap.set("n", "jd", vim.diagnostic.goto_next)
 vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist)
 -- local opts = { buffer = ev.buf }
 vim.keymap.set("n", "gD", vim.lsp.buf.declaration, {})
