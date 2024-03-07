@@ -1,0 +1,21 @@
+# Ignore everything in the home directory
+# /*
+
+# Except for specific files and directories
+# !.gitignore
+# !.tmux.conf
+# !.bash_aliases
+# !readme.md
+# !notes/
+
+# Include .config directory
+# !.config/
+# /.config/*
+
+# Include .config/nvim and its contents
+# !.config/nvim/
+# !.config/nvim/**
+
+# Ignore spesific files
+nvim/lazy-lock.json
+

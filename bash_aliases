@@ -1,0 +1,12 @@
+# some more ls aliases
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+alias ip='ip --color'
+alias ipa='ip --color --brief a'
+# alias markdown ='grip -b'
+alias tarball='tar -czvf'
+alias untar='tar -xzvf'
+alias tarpeak='tar -ztvf'
+alias vi='nvim'
+# alias vim='nvim'
