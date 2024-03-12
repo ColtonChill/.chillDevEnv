@@ -19,15 +19,12 @@ ln -s ~/.chillDevEnv/notes ~/notes
 ## Set up Steps
 
 ### Install tmux & neovim >= 9.0
-Source: [neovim](https://github.com/jesseduffield/lazygit)
-```bash
-sudo apt install tmux
-# Pre-built archive
-curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz
-sudo rm -rf /opt/nvim
-sudo tar -C /opt -xzf nvim-linux64.tar.gz
-```
 
+### C++ Diagnostics
+* Install gcc, g++, cmake, clang, clangd, clang-tidy, llvm, ccls
+* `clangd`: c/c++ LSP
+
+### Clipboard Stuff
 ```
 sudo apt install xsel
 ```
