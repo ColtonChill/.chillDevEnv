@@ -1,4 +1,4 @@
-[Cheat Sheet](notes/cheatsheet.md)
+## Key commands --> [Cheat Sheet](notes/cheatsheet.md)
 
 # Setup My Development Environment
 ```bash

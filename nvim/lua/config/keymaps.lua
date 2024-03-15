@@ -1,8 +1,18 @@
 -- Navigate with Alt+h/j/k/l
-vim.cmd("noremap <A-h> <C-w>h")
-vim.cmd("noremap <A-j> <C-w>j")
-vim.cmd("noremap <A-k> <C-w>k")
-vim.cmd("noremap <A-l> <C-w>l")
+-- vim.cmd("noremap <A-h> <C-w>h")
+-- vim.cmd("noremap <A-j> <C-w>j")
+-- vim.cmd("noremap <A-k> <C-w>k")
+-- vim.cmd("noremap <A-l> <C-w>l")
+vim.cmd('let g:tmux_navigator_no_mappings = 1')
+
+-- vim.cmd('noremap <silent> <A-h> :<C-U>TmuxNavigateLeft<cr>')
+vim.cmd('noremap <silent> <A-h> :<C-U>TmuxNavigateLeft<cr>')
+vim.cmd('noremap <silent> <A-j> :<C-U>TmuxNavigateDown<cr>')
+vim.cmd('noremap <silent> <A-k> :<C-U>TmuxNavigateUp<cr>')
+vim.cmd('noremap <silent> <A-l> :<C-U>TmuxNavigateRight<cr>')
+-- vim.cmd('noremap <silent> <c-\> :<C-U>TmuxNavigatePrevious<cr>')
+
+vim.api.nvim_set_keymap('n', '<leader>dd', '<cmd>Telescope diagnostics<CR>', { noremap = true, silent = true,desc="View All Diagnostics" })
 
 
 -- Telescope
@@ -21,7 +31,6 @@ vim.keymap.set("n", "<leader>e", ":Neotree toggle filesystem reveal left<CR>", {
 
 
 -- LSP hover docs
--- TODO: Need to finish setting up diagnostic toggles
 vim.keymap.set('n', '<space>do', vim.diagnostic.open_float)
 vim.keymap.set('n', "<space>d[", vim.diagnostic.goto_prev)
 vim.keymap.set('n', "<space>d]", vim.diagnostic.goto_next)
@@ -30,11 +39,12 @@ vim.keymap.set('n', "<space>dt", "<Plug>(toggle-lsp-diag-vtext)", {desc = "Toggl
 vim.keymap.set('n', "<space>dk", "<Plug>(toggle-lsp-diag-off)", {desc = "Kill Diagnostics"})
 vim.keymap.set('n', "<space>dr", "<Plug>(toggle-lsp-diag-on)", {desc = "Restart Diagnostic"})
 vim.api.nvim_set_keymap('n', '<leader>dd', '<cmd>Telescope diagnostics<CR>', { noremap = true, silent = true,desc="View All Diagnostics" })
+-- TODO: Need to finish completion toggles (move to this file)
 
 -- local opts = { buffer = ev.buf }
 vim.keymap.set("n", "gD", vim.lsp.buf.declaration, {})
 vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})
-vim.keymap.set("n", "h", vim.lsp.buf.hover, {})
+vim.keymap.set("n", "H", vim.lsp.buf.hover, {})
 vim.keymap.set("n", "gi", vim.lsp.buf.implementation, {})
 vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, {})
 vim.keymap.set("n", "<space>wa", vim.lsp.buf.add_workspace_folder, {})
