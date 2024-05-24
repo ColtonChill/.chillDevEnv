@@ -12,6 +12,7 @@ ln -s ~/.chillDevEnv/notes ~/notes
 
 ## Install Tmux package mangager
 ```
+sudo apt install tmux
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 tmux source ~/.tmux.conf
 ```
@@ -41,12 +42,19 @@ mkdir -p ~/.local/share/fonts
 cd ~/.local/share/fonts
 wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.1.1/Agave.zip
 unzip Agave.zip
+fc-cache .local/share/fonts
 ```
 
 ### Telescope.nvim requirmemts
 ```sh
 sudo apt-get install ripgrep
 sudo apt install fd-find
+```
+
+### Mason-LSP packages
+```
+sudo apt install python3.10-venv  # for pylsp
+sudo apt install npm  # for bashls, for jsonls
 ```
 
 # About

@@ -27,6 +27,7 @@ return {
 					"jsonls",
 					"clangd",
 					"cmake",
+					"intelephense",
 				},
 			})
 		end,
@@ -34,22 +35,23 @@ return {
 	{ -- Just a pile of configs
 		"neovim/nvim-lspconfig",
 		config = function()
-      local lspconfig = require("lspconfig")
-		  -- auto completeions	
-      local capabilities = require("cmp_nvim_lsp").default_capabilities()
-      local opts = {capabilities = capabilities}
+			local lspconfig = require("lspconfig")
+			-- auto completeions
+			local capabilities = require("cmp_nvim_lsp").default_capabilities()
+			local opts = { capabilities = capabilities }
 			-- These are needed for each language you want support for.
 			lspconfig.lua_ls.setup(opts)
 			lspconfig.bashls.setup(opts)
 			lspconfig.pylsp.setup(opts)
 			lspconfig.clangd.setup(opts)
 			lspconfig.cmake.setup(opts)
+			lspconfig.intelephense.setup(opts)
 		end,
 	},
 	--------------------------------
 	-- DAP Stuff -- WORK IN PROGRESS
 	--------------------------------
-	{},
+	{ "mfussenegger/nvim-dap" },
 	-----------------------------
 	-- Linter & Formater Stuff --
 	-----------------------------
