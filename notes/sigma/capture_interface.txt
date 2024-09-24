@@ -1,0 +1,55 @@
+#########################
+## how to put already recorded stream into agent:
+#########################
+## Description:
+This interface allows you to take the contents of a previous stream and 
+restream it as if it was currently being streamed. This is useful for 
+when taking new data is timely, or for unit testing.
+
+The capture interface doesn't do much more than just listen for a data (like
+UDP or TCP data stream) stream and publish it to a SIGMA stream. To use it
+for testing already taken data, this comes in two parts. First, replace the 
+video ifc with the capture ifc in the sigma xml configurations. This means 
+you must write the appropriate configuration lines in the capture ifc cfg 
+to mimic the replaced ifcs datafeed line.
+And Second, a data stream from some location with data already taken to the 
+destination sigma box. In the case of a recorded ts video, use ffmpeg
+
+For example, I replaced the REALSENSE ifc with the capture ifc in the following
+manner:
+
+## This was from the REALSENSE ifc:
+<datafeed feedname="Depth_Video" filename="H264" fileext="ts" datarate_KiBps="2000" logthreshold_bytes="2000" handler="VideoFeed"/>
+
+## This is what went into the capture ifc cfg:
+[Depth Stream]
+feedname=Depth_Video  # The name of the feed I wanted to replace
+basename=H264         # This ifc is treated just like a regular ifc so the recieved
+                      # data is recorded just like any other ifc
+extension=ts          # ditto ^^
+ipaddr=0.0.0.0        # I imagine this is the accepting ip address, as in, from what
+                      # source should I accept data 0.0.0.0 for any source
+port=5601             # The port to recieve data on
+mtu=1500              
+sockettype=0
+datarate_kbps=50000
+maxreadsize_bytes=65536
+threshold_bytes=2000  # Copied form the REALSENSE ifc line
+
+## Now to stream the test video to this machine
+ffmpeg does not run on every platform so you may need to run it from your
+host machine. In the following example, I have copied the file I want to stream
+to my machine (192.168.0.99) and am streaming to port 5601 on the sigma box (192.168.0.10).
+
+ffmpeg -re -i ./H264_20201216_150505_478.ts -c copy -f mpegts -map 0:v -map 0:d? udp://192.168.0.10:5601
+
+or you can use netcat:
+
+cat ./H264_20201216_150505_478.ts | pv -L 516k | nc -u 192.168.0.10 5601
+
+                                      Sigma Machine
++-------------+                +-----------------------------+
+|             | ffmpeg stream  | CaptureIfc      ConsumerAgt |
+| My machine  | -------------> |    | ---------------> |     |
+|             |                |                             |
++-------------+                +-----------------------------+
