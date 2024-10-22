@@ -51,4 +51,5 @@ keybind = alt+five=unbind
 
 # theme = dark:iTerm2 Tango Dark,light:iTerm2 Tango Light 
 theme = iTerm2 Tango Dark 
-palette = 2=#8AE234
+palette = 2=#4E9A06
+# palette = 2=#8AE234

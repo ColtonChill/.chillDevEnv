@@ -1,11 +1,13 @@
-## ip command
-### setting up a bridge
+## IP command
+### setting up a bridge (temporary)
+```
 ip link add name <bridge> type bridge
 ip link set <dev> master <bridge>
   * undo: ip link set ens18 nomaster
 ip link set <dev> up
 ip link set <bridge> up
 ip a add 192.168.0.234/24 dev <bridge>
+```
 
 ## brctl
 brctl addbr <bridgeName>
