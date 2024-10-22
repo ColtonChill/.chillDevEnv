@@ -21,6 +21,9 @@ incus profile device add br0-profile eth1 nic nictype=bridge parent=br0 name=eth
 incus profile add deb1 br0-profile 
 
 ### Set up shared disk
-incus config device add rockyJenkins shared disk path=/root/shared source='/home/chill/work/sigma'
+incus config device add <container> shared disk path=</path/on/container> source='</path/on/host>'
 incus config set rockyJenkins security.privileged true
+
+### Add web cam (video0)
+incus config device add deb1 video0 unix-char source=/dev/video0 path=/dev/video0
 

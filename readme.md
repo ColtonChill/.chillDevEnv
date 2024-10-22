@@ -53,8 +53,11 @@ sudo apt install fd-find
 
 ### Mason-LSP packages
 ```
-sudo apt install python3.10-venv  # for pylsp
-sudo apt install npm  # for bashls, jsonls, priettier
+sudo apt install python3.12-venv  # for pylsp
+# Node package manager (bashls, jsonls, priettier)
+# https://github.com/nvm-sh/nvm
+wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
+https://github.com/nvm-sh/nvm
 ```
 
 # About
