@@ -14,6 +14,10 @@ LANIF='br0'
 echo 'Enabling Kernel IP forwarding...'
 /bin/echo 1 > /proc/sys/net/ipv4/ip_forward
 
+# Docker rules
+$IPTABLES -I DOCKER-USER -i incusbr0 -j ACCEPT
+$IPTABLES -I DOCKER-USER -o incusbr0 -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
+
 # Flush rules and delete chains
 echo 'Flushing rules and deleting existing chains...'
 $IPTABLES -P INPUT ACCEPT

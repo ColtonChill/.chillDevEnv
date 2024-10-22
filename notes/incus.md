@@ -1,32 +1,31 @@
-incus config device add <name of container> <name of device>(tak connector) proxy listen=tcp:0.0.0.0:port
-incus config device add <name of container> <name of device>(tak connector) proxy connect=tcp:0.0.0.0:port
+## Set up bridge on Host
+nmcli con add type bridge con-name br0 ifname br0 \
+    ipv4.method manual ipv6.method ignore ipv4.address 192.168.0.234/24 bridge.stp no
+nmcli con add type bridge-slave con-name br0-slave ifname <dev> master br0
+nmcli connection up br0-slave
+nmcli connection up br0
 
-incus config device add my-container eth0 nic name=eht0 nictype=bridged parent=lxdbr0
-* Don't think this works
-* --> incus config device set my-container eth0 ipv4.address 10.15.78.100
 
-### Set static IP (incus managed brige)
-incus config device override [container-name] eth0
-incus config device set [container-name] eth0 ipv4.address=192.168.0.201
-
-### (old) set static ip of containers
-incus profile create static-ip-debX
-incus profile device add static-ip-debX eth0 nic nictype=bridged parent=incusbr0 ipv4.address=192.168.10.20X
-incus profile device add static-ip-debX root disk path=/ pool=default
-incus profile assign debX static-ip-debX
+## Set/Change default bridge IP range
+```
+incus network set incusbr0 ipv4.address 192.168.0.1/24
+```
 
 ### Set bridge profile
 incus profile device add br0-profile eth1 nic nictype=bridge parent=br0 name=eth1
 incus profile add deb1 br0-profile 
 
+### Set up bridge connection
+incus config device add <container> eth1 nic nictype=bridged parent=br0
+
 ### Set up shared disk
-incus config device add bld-rocky-sigma sigma disk path=/root/shared/sigma source='/home/chill/work/sigma'
-incus config set bld-rocky-sigma security.privileged true
-incus config set bld-rocky-sigma security.nesting true
+incus config device add <container> sigma disk path=/root/shared/sigma source='/home/chill/work/sigma'
+incus config set <container> security.privileged true
+incus config set <container> security.nesting true
 
 ### For Nesting containers
-incus config set bld-rocky-sigma security.nesting true
-incus config set bld-rocky-sigma raw.lxc "
+incus config set <container> security.nesting true
+incus config set <container> raw.lxc "
 lxc.apparmor.profile = unconfined
 lxc.cgroup.devices.allow = a
 lxc.mount.auto = cgroup:rw

@@ -1,18 +1,21 @@
-## ip command
-### setting up a bridge
+## IP command
+### setting up a bridge (temporary)
+```
 ip link add name <bridge> type bridge
 ip link set <dev> master <bridge>
   * undo: ip link set ens18 nomaster
 ip link set <dev> up
 ip link set <bridge> up
 ip a add 192.168.0.234/24 dev <bridge>
+```
 
 ## brctl
 brctl addbr <bridgeName>
 brctl addif <bridgeName> <dev>
 
 ### Persistant bridge
-nmcli con add type bridge con-name br0 ifname br0 ipv4.address 192.168.0.234/24 ipv4.method manual bridge.stp no
+nmcli con add type bridge con-name br0 ifname br0 \
+    ipv4.method manual ipv6.method ignore ipv4.address 192.168.0.234/24 bridge.stp no
 nmcli con add type ethernet slave-type bridge ifname eth1 master br0
 
 ### ip route

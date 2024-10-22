@@ -22,9 +22,8 @@ Run tmux, update using `\<leader\> I`, then restart tmux
 
 ## Install Neovim
 ```
-# curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz
-curl -LO https://github.com/neovim/neovim/releases/download/v0.11.2/nvim-linux-x86_64.tar.gz
-sudo rm -rf /opt/nvim
+curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz
+sudo rm -rf /opt/nvim-linux-x86_64/
 sudo tar -C /opt -xzf nvim-linux-x86_64.tar.gz
 ```
 Add this line to `~/.bashrc`:
