@@ -9,7 +9,6 @@ incus config device add my-container eth0 nic name=eht0 nictype=bridged parent=l
 incus config device override [container-name] eth0
 incus config device set [container-name] eth0 ipv4.address=192.168.0.201
 
-
 ### (old) set static ip of containers
 incus profile create static-ip-debX
 incus profile device add static-ip-debX eth0 nic nictype=bridged parent=incusbr0 ipv4.address=192.168.10.20X
@@ -23,4 +22,5 @@ incus profile add deb1 br0-profile
 ### Set up shared disk
 incus config device add rockyJenkins shared disk path=/root/shared source='/home/chill/work/sigma'
 incus config set rockyJenkins security.privileged true
-
+#### Remove the share
+incus config device remove rockyJenkins shared

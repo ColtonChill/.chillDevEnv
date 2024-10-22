@@ -24,4 +24,8 @@ alias cmake_jet_de='cmake -D CMAKE_TOOLCHAIN_FILE=../toolchains/jetpack5.cmake -
 alias cmake_jet_re='cmake -D CMAKE_TOOLCHAIN_FILE=../toolchains/jetpack5.cmake -D ENABLE_JSON=on -D CMAKE_BUILD_TYPE=Release -D CMAKE_EXPORT_COMPILE_COMMANDS=ON ../'
 
 # ROS
-alias ros_load='source /opt/ros/iron/setup.bash && export ROS_DOMAIN_ID=0'
+alias ros_load='source /opt/ros/jazzy/setup.bash && export ROS_DOMAIN_ID=0'
+
+# Proton Tricks
+alias protontricks='flatpak run com.github.Matoking.protontricks'
+alias protontricks-launch='flatpak run --command=protontricks-launch com.github.Matoking.protontricks'
