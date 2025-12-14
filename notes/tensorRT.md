@@ -13,7 +13,7 @@ python train_scripts/export_yolov8_to_trt_onnx.py --weights ~/Downloads/tensorRT
 
 Build an engine file from scratch
 ```
-/usr/src/tensorrt/bin/trtexec --onnx=./model_trt.onnx --saveEngine=model_trt_exec.engine --verbose
+/usr/src/tensorrt/bin/trtexec --onnx=model_trt.onnx --saveEngine=model_trt_exec.engine --verbose
 ```
 Build an engine with sigma utility
 ```

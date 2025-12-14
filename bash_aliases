@@ -16,11 +16,10 @@ alias vim='nvim'
 alias cmake_deb_de='cmake -D DEBIAN_BUILD=true -D CMAKE_BUILD_TYPE=Debug -D CMAKE_EXPORT_COMPILE_COMMANDS=ON ../'
 alias cmake_deb_re='cmake -D DEBIAN_BUILD=true -D CMAKE_BUILD_TYPE=Release -D CMAKE_EXPORT_COMPILE_COMMANDS=ON ../'
 alias cmake_deb_cuda='cmake -D DEBIAN_BUILD=true -D CMAKE_BUILD_TYPE=Release -D CMAKE_EXPORT_COMPILE_COMMANDS=ON -D SIGMA_BUILD_WITH_CUDA=ON ../'
-alias cmake_deb_cuda_util='cmake -D DEBIAN_BUILD=true -D CMAKE_BUILD_TYPE=Release -D CMAKE_EXPORT_COMPILE_COMMANDS=ON -D SIGMA_BUILD_WITH_CUDA=ON -D SIGMA_BUILD_ATR_TEST_UTIL=ON ../'
 
 alias cmake_rocky_re='cmake -D ROCKY_BUILD=true -D CMAKE_BUILD_TYPE=Release ../'
 alias cmake_rocky_cuda='cmake -D ROCKY_BUILD=true -D CMAKE_BUILD_TYPE=Release -D SIGMA_BUILD_WITH_CUDA=ON ../'
-alias cmake_rocky_cuda_util='cmake -D ROCKY_BUILD=true -D CMAKE_BUILD_TYPE=Release -D SIGMA_BUILD_WITH_CUDA=ON -D SIGMA_BUILD_ATR_TEST_UTIL=ON ../'
+alias cmake_rocky_cuda_TMX='cmake -D ROCKY_BUILD=true -D CMAKE_BUILD_TYPE=Release -D SIGMA_BUILD_WITH_CUDA=ON -D TensorRT_DIR=/usr/src/tensorrt -D CUDA_TOOLKIT_INCLUDE=/usr/local/cuda-11/targets/x86_64-linux/include -D CUDA_CUDART_LIBRARY=/usr/local/cuda-11/targets/x86_64-linux/lib/libcudart.so -D -DSIGMA_SANITIZER=none -DSIGMA_BUILD_DOC=OFF ../'
 alias cmake_rocky_re_asan='cmake -D ROCKY_BUILD=true -D CMAKE_BUILD_TYPE=Release -D BUILD_EXTERNAL_IFCS=OFF -D SIGMA_BUILD_DOC=OFF -D SIGMA_SANITIZER:STRING=asan'
 
 alias cmake_deb_arm_de='cmake -D CMAKE_TOOLCHAIN_FILE=../toolchains/ubuntuArm.cmake -D CMAKE_BUILD_TYPE=Debug -D CMAKE_EXPORT_COMPILE_COMMANDS=ON ../'
