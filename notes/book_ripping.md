@@ -30,8 +30,54 @@ authcode:         d5fdb229
 ## Firefox addon
 [Libby Download](https://addons.mozilla.org/en-US/firefox/addon/libby-download/)
 
+
 ## Convert mp3 to m4b
-`ffmpeg -i book.mp3 -vn book.m4b`
+For a single mp3
+```
+ffmpeg -i input.mp3 \
+  -map 0:a \
+  -map 0:v? \
+  -c:a libfdk_aac -vbr 3 \
+  -c:v copy \
+  -disposition:v attached_pic \
+  output.m4b
+```
+For multiple, make a text file of mp3's
+```
+file 'input1.mp3'
+file 'input2.mp3'
+file 'input3.mp3'
+...
+```
+Then use that for the ffmpeg cmd
+```
+ffmpeg \
+  -f concat -safe 0 -i inputs.txt \
+  -i "first_input.mp3" \
+  -map 0:a:0 \
+  -map 1:v:0 \
+  -c:a libfdk_aac -vbr 3 \
+  -c:v copy \
+  -disposition:v attached_pic \
+  -fflags +genpts \
+  -movflags +faststart \         # needed for phones to play nice
+  output.m4b
+```
+If individual mp3 are mangled, re-encode them.
+```
+for f in *.mp3; do
+  ffmpeg -i "$f" -map 0:a "fixed_${f%.mp3}.wav"
+done
+```
+Extract a cover from an m4b
+```
+ffmpeg -i "input.m4b" -map 0:2 -c copy "cover.jpg"
+```
+### Remux to fast start
+```
+ffmpeg -i broken.m4b -c copy -movflags +faststart fixed.m4b
+```
+
 
 # Ebooks 
 ## Libby cli

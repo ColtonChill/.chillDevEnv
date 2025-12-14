@@ -40,12 +40,13 @@ systemctl start docker
 ```
 8. Export environment variables 
 ```
-export SERVER_IP=10.10.10.212
+export SERVER_IP=10.10.10.82
 export SIGMA_IP=10.10.10.28
 export APP_IP_ADDRESS=0.0.0.0
 export DB_HOST=localhost
 export VITE_MWS_HOST=$SERVER_IP
 export ROAD_SERVICE_URL=http://10.5.0.136:8089
+export MTS_SERVER_PATH=/root/shared/midnight/Midnight-Translation-Server/build/bin/server
 ```
 
 9. Run midnight with docker
@@ -56,7 +57,7 @@ docker compose -f docker-compose-cody-roads.yml up
 
 10. update node package manager
 ```
-npm update -g npm
+npm update -g npmp      
 npm install -g nodemon
 ```
 
@@ -72,7 +73,7 @@ migrate -path /root/shared/midnight/Midnight-Database/migrations/ -database post
 
 13. Clear out the node_models from all Midnight-X sub-dirs
 ```
-cd Midnight-X
+cd Midnight-[mts,*]
 # Only remove if present
 rm -rf node_modules/*
 npm install
@@ -81,7 +82,7 @@ npm install
 14. Edit the Scripts/deploy-sigma-road.py
 ```
 commands_and_dirs = [
-    (["/root/shared/midnight/Midnight-Translation-Server/build/bin/server",  "-s", "10.145.78.28", "-t", "10.145.78.86", "--subHost", "0.0.0.0", "--pubHost", "127.0.0.1"], '/root/shared/midnight/Midnight-Translation-Server/build', ConsoleHelper.LIGHT_CYAN, 'MTS'), (["npx", "nodemon", "./bin/www"], 'Midnight-Web-Server', ConsoleHelper.DARK_YELLOW, 'MWS'), (["npm", "run", "serve"], 'Midnight-User-Interface', ConsoleHelper.LIGHT_MAGENTA, 'MUI'),
+    (["/root/shared/midnight/Midnight-Translation-Server/build/bin/server",  "-s", "10.10.10.28", "-t", "10.10.10.212", "--subHost", "0.0.0.0", "--pubHost", "127.0.0.1"], '/root/shared/midnight/Midnight-Translation-Server/build', ConsoleHelper.LIGHT_CYAN, 'MTS'), (["npx", "nodemon", "./bin/www"], 'Midnight-Web-Server', ConsoleHelper.DARK_YELLOW, 'MWS'), (["npm", "run", "serve"], 'Midnight-User-Interface', ConsoleHelper.LIGHT_MAGENTA, 'MUI'),
 ]
 ```
 15. run the python script (with exported variables in 2nd terminal)

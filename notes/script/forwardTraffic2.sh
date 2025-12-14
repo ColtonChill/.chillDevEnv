@@ -5,9 +5,9 @@ IPTABLES=/sbin/iptables
 #WANIF='enx6c3c8cf7f3b6'
 WANIF='wlp0s20f3'
 #LANIF='enxc025a55823f0'
-#LANIF='enx6c3c8cf7f3b6'
+LANIF='enxf8e43bc76a80'
 #LANIF='eth0'
-LANIF='br0'
+#LANIF='br0'
 #LANIF='incusbr0'
 
 # Enable IP forwarding in the kernel
