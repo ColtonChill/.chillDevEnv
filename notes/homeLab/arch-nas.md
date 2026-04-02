@@ -134,58 +134,49 @@ sudo zfs set atime=off tank
 ### Dataset hierarchy
 ```
 tank
-├── incus/                 # Incus-owned execution space
+├── incus/                 # Official Incus storage pool — let Incus manage everything here
 │   ├── containers/
 │   ├── images/
-│   └── custom/
+│   └── custom/            # Where nextcloud-data, jellyfin-config, vaultwarden-data, etc, live automatically
 │
-├── services/              # App-owned persistent state
-│   ├── nextcloud/
-│   │   ├── data/
-│   │   └── db/
-│   │
-│   ├── jellyfin/
-│   │   └── config/
-│   │
-│   ├── foundryvtt/
-│   │   └── data/
-│   │
-│   ├── vaultwarden/
-│   │   └── data/
-│   │
-│   └── opnsense/
-│       └── data/
+├── media/                 # The shared library (this is the only thing that really needs to be "shared")
+│   ├── movies/
+│   ├── tv/
+│   ├── photos/
+│   └── ...                # Organize however you want
 │
-├── shared/                # Explicitly shared datasets
-│   ├── media/
-│   └── uploads/
-│
-└── backups/         
+└── backups/               # For zfs send | incus export or rsync
 ```
 
 ### Set up zfs dataset for incus
-Create default incus dataset
 ```bash
+# Create default incus dataset
 zfs create -o recordsize=128k \
            -o mountpoint=/tank/incus \  # needed by incus
            tank/incus
 # Tell incus about the dataset
 incus storage create zfs-incus zfs source=tank/incus
-# Spin up new contain in zpool
-incus launch images:debian/13 [my-container] zfs-incus
-# Inform contain after the fact
-incus config device add [my-container] media disk \
-  source=/tank/shared/media \
-  path=/media \
-  readonly=true # optional
+
+# Create shared datasets (nextcloud, jellyfin)
+zfs create -o compression=off \
+           -o atime=off -o recordsize=1M \
+           tank/media
+zfs set mountpoint=/tank/media tank/media   # or wherever on host
+```
+### Example of how to set up new service
+```
+# Create Incus custom volumes for app data
+incus storage volume create default [volume-name]
+# ... repeat for jellyfin-data, foundryvtt-data, vaultwarden-data, etc.
 ```
 
 
 ### Create shared datasets (nextcloud, jellyfin)
 ```bash
-zfs create -o recordsize=1M tank/shared/media
-??? zfs create -o recordsize=16K tank/services/nextcloud/data
 ```
+# Spin up new contain in zpool (example debian)
+incus launch images:debian/13 [my-container] zfs-incus
+
 ### ZFS snapshots
 ```bash
 zfs snapshot -r tank@daily

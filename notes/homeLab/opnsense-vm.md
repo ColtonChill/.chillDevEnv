@@ -87,13 +87,9 @@ incus network create br-lan --type=bridge \
 incus config device add opnSense-vm eth-lan nic network=br-lan
 incus network set br-lan bridge.external_interfaces=enp4s0f1
 
-# Services Network
-incus config device add opnSense-vm eth-incus nic network=incusbr0
-
 #### Pin mac addresses for all these devices
 incus config device set opnSense-vm eth-wan  hwaddr=00:16:3e:aa:bb:01
 incus config device set opnSense-vm eth-lan  hwaddr=00:16:3e:aa:bb:02
-incus config device set opnSense-vm eth-incus hwaddr=00:16:3e:aa:bb:03
 ```
 
 
@@ -244,13 +240,11 @@ It might be necessary to clamp the mss/mtu for ssh to work right. Add this rull
 # Use `incus admin init` to setup default incusbr0
 # Set a static subnet for incus services
 incus network set incusbr0 ipv4.address '10.10.10.1/24'
-incus config device set opnSense-vm eth-incus ipv4.address 10.10.10.2
-# Set a IP address for each service 
-incus profile create services
-incus profile device add services eth-incus nic network=incusbr0 name=eth-incus
 # For each container
-incus profile assign [container] services
-incus config device set [container] eth-incus ipv4.address 10.10.10.100
+  # Set a IP address for each service 
+  incus config device override [container] eth0 
+  incus config device set [container] eth0 ipv4.address 
+  incus config set <instance-name> boot.autostart=true
 ```
 
 
