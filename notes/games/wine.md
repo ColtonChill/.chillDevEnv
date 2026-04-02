@@ -4,15 +4,15 @@
 # Set up fresh win prefix
 export WINEPREFIX=~/.local/share/wineprefixes/pokemon-uranium
 export WINEARCH=win32
-# Create the prefix (be patient, first time can take 5-15 min)
+# Create the prefix 
 wineboot -u
+# Install dependencies 
 winetricks -q corefonts
 # Run the game
 WINEPREFIX=~/.local/share/wineprefixes/pokemon-uranium \
 wine ~/games/pokemon_uranium/Uranium.exe
 # set up save file cache
-mkdir -p ~/games/pokemon_uranium/saves/cached_saves
-ln -sfn ~/.local/share/wineprefixes/pokemon-uranium/drive_c/users/chill/Saved\ Games/Pokemon\ Uranium ~/games/pokemon_uranium/saves/game_saves
+ln -s ~/Nextcloud/games/saves/pokemon_uranium '~/.local/share/wineprefixes/pokemon-uranium/drive_c/users/chill/Saved Games/Pokemon Uranium'
 ```
 
 ## Pokemon Xenoverse
@@ -20,9 +20,9 @@ ln -sfn ~/.local/share/wineprefixes/pokemon-uranium/drive_c/users/chill/Saved\ G
 # Set up fresh win64 prefix
 export WINEPREFIX=~/.local/share/wineprefixes/pokemon-xenoverse
 export WINEARCH=win64
-# Create the prefix (be patient, first time can take 5-15 min)
+# Create the prefix 
 wineboot -u
-# Install the exact deps from the script (ignore the OLE spam)
+# Install dependencies 
 winetricks -q dotnet472 d3dcompiler_47
 # Run the game
 WINE_LARGE_ADDRESS_AWARE=1 \

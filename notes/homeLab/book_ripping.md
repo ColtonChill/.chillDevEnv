@@ -63,16 +63,45 @@ ffmpeg \
   -movflags +faststart \         # needed for phones to play nice
   output.m4b
 ```
+
+## Extra stuff
+### Add chapter information
+Extract any existing metadata
+```bash
+ffmpeg -i input.mp4 -f ffmetadata metadata.txt
+```
+Add to metadata file with chapter info
+```txt
+;FFMETADATA1
+[CHAPTER]
+TIMEBASE=1/1000
+START=0
+END=149999
+title=Chapter 1
+[CHAPTER]
+TIMEBASE=1/1000
+START=150000
+END=284999
+title=Chapter 2
+```
+Then you can add that metadata to the m4b
+```bash
+ffmpeg -i input_video.m4b -i metadata.txt -map_metadata 1 -codec copy output_video.m4b
+```
+
+### De-mangle mp3
 If individual mp3 are mangled, re-encode them.
 ```
 for f in *.mp3; do
   ffmpeg -i "$f" -map 0:a "fixed_${f%.mp3}.wav"
 done
 ```
-Extract a cover from an m4b
+
+### Extract a cover from an m4b
 ```
 ffmpeg -i "input.m4b" -map 0:2 -c copy "cover.jpg"
 ```
+
 ### Remux to fast start
 ```
 ffmpeg -i broken.m4b -c copy -movflags +faststart fixed.m4b
