@@ -3,6 +3,7 @@
 Show gpu info:
 ```
 sudo lshw -C display
+inxi -G
 ```
 
 ### tensorflow
@@ -13,67 +14,25 @@ pip install torch torchvision torchaudio --index-url https://download.pytorch.or
 
 ### Drivers
 
-
-[Link](https://www.amd.com/en/support/download/linux-drivers.html)
+[link](https://rocm.docs.amd.com/projects/install-on-linux/en/latest/install/quick-start.html#uninstall-kernel-driver)
 
 sudo apt install --reinstall mesa-vulkan-drivers mesa-vulkan-drivers:i386
 
 
 ## Scratch notes:
-apt autoremove warnings I got when I removed the gpu
-```
-/etc/kernel/prerm.d/dkms:
-dkms: removing: amdgpu 6.10.5-2084815.24.04 (6.8.0-85-generic) (x86_64)
-Module amdgpu-6.10.5-2084815.24.04 for kernel 6.8.0-85-generic (x86_64).
-Before uninstall, this module version was ACTIVE on this kernel.
-
-amdgpu.ko.zst:
- - Uninstallation
-   - Deleting from: /lib/modules/6.8.0-85-generic/updates/dkms/
- - Original module
-   - No original module was found for this module on this kernel.
-   - Use the dkms install command to reinstall any previous module version.
-
-amdttm.ko.zst:
- - Uninstallation
-   - Deleting from: /lib/modules/6.8.0-85-generic/updates/dkms/
- - Original module
-   - No original module was found for this module on this kernel.
-   - Use the dkms install command to reinstall any previous module version.
-
-amdkcl.ko.zst:
- - Uninstallation
-   - Deleting from: /lib/modules/6.8.0-85-generic/updates/dkms/
- - Original module
-   - No original module was found for this module on this kernel.
-   - Use the dkms install command to reinstall any previous module version.
-
-amd-sched.ko.zst:
- - Uninstallation
-   - Deleting from: /lib/modules/6.8.0-85-generic/updates/dkms/
- - Original module
-   - No original module was found for this module on this kernel.
-   - Use the dkms install command to reinstall any previous module version.
-
-amddrm_ttm_helper.ko.zst:
- - Uninstallation
-   - Deleting from: /lib/modules/6.8.0-85-generic/updates/dkms/
- - Original module
-   - No original module was found for this module on this kernel.
-   - Use the dkms install command to reinstall any previous module version.
-
-amddrm_buddy.ko.zst:
- - Uninstallation
-   - Deleting from: /lib/modules/6.8.0-85-generic/updates/dkms/
- - Original module
-   - No original module was found for this module on this kernel.
-   - Use the dkms install command to reinstall any previous module version.
-
-amdxcp.ko.zst:
- - Uninstallation
-   - Deleting from: /lib/modules/6.8.0-85-generic/updates/dkms/
- - Original module
-   - No original module was found for this module on this kernel.
-   - Use the dkms install command to reinstall any previous module version.
-depmod...
+```bash
+# Register Repositories
+wget https://repo.radeon.com/amdgpu-install/7.2.4/ubuntu/noble/amdgpu-install_7.2.4.70204-1_all.deb
+sudo apt install ./amdgpu-install_7.2.4.70204-1_all.deb
+sudo apt update
+# Remove old divers
+sudo apt autoremove amdgpu-dkms
+reboot
+# Install drivers
+sudo apt install "linux-headers-$(uname -r)" "linux-modules-extra-$(uname -r)"
+sudo apt install amdgpu-dkms
+# Install ROCm
+sudo apt install python3-setuptools python3-wheel
+sudo usermod -a -G render,video $LOGNAME # Add the current user to the render and video groups
+sudo apt install rocm
 ```

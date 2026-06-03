@@ -251,9 +251,6 @@ incus network set incusbr0 ipv4.address '10.10.10.1/24'
 # TODO:
 * upnp (universal plug & play)
 * openvpn
-* caddy
-  * jellyfin
-  * foundryvtt
 
 
 # Bugs & Foot Guns

@@ -87,6 +87,7 @@ Server = https://archzfs.com/$repo/x86_64
 vim /etc/pacman.conf
 """
 Include = /etc/pacman.d/archzfs
+IgnorePkg = linux-lts linux-lts-headers zfs-dkms zfs-utils
 """
 # Install & enable zfs
 sudo pacman -S zfs-dkms
