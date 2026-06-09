@@ -64,8 +64,9 @@ Changes these values in `/etc/php/8.4/apache2/php.ini` (ignore `/etc/php/8.4/cli
 upload_max_filesize = 16G
 post_max_size = 16G
 max_input_time = 36 # or 3600 
+output_buffering = Off
+memory_limit: Should be at least 512MB. # See also Uploading big files > 512MB
 # max_execution_time: See Uploading big files > 512MB
-# memory_limit: Should be at least 512MB. See also Uploading big files > 512MB
 # opcache.enable and related settings: See Memory caching and Server tuning
 # open_basedir: See Hardening and security guidance
 # upload_tmp_dir: See Uploading big files > 512MB
@@ -150,7 +151,13 @@ password: ********
 database name: nextcloud
 database host: localhost
 ```
-
+#### Set trusted_proxies
+vim `/var/www/nextcloud/config/config.php` and add:
+```
+'trusted_proxies' => [
+    '127.0.0.1',
+]
+```
 ### Cron jobs
 ```bash
 apt install cron

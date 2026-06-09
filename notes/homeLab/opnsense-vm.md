@@ -220,6 +220,7 @@ TODO: figure out NAT hairpinning
   * Firewall -> Rules -> WAN:
     * Protocol = UDP
     * Destination port range = 1194
+    * Description = "allow OpenVpn traffic in"
   * Firewall -> Rules -> OpenVPN
     * Defaults should be fine
 * Export Client Profile
@@ -251,6 +252,13 @@ incus network set incusbr0 ipv4.address '10.10.10.1/24'
 # TODO:
 * upnp (universal plug & play)
 * openvpn
+
+
+## Cloudflare
+### Strict SSL
+As part of getting nextcloud to work right, you'll need to enable "full(Strict)" mode.
+Not just "Full" or "Flexible.
+* SSL/TLS --> Overview: select "configure" then "Full(strict)"
 
 
 # Bugs & Foot Guns

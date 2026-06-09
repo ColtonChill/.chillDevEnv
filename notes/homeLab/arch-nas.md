@@ -1,4 +1,4 @@
-# Setup for the arch machine
+# Setup for the Arch Nas
 [installation guide](https://wiki.archlinux.org/title/Installation_guide)
 
 ## Revert kernel to long term version rather then bleeding edge
@@ -49,13 +49,19 @@ systemctl enable --now systemd-resolved
 ```
 
 ## Set up non-root user
-
+```bash
+# make a user with a home dir and shell
+useradd -m -G wheel -s /bin/bash <username>
+passwd <username>
+# turn on the wheel group 
+visudo /etc/sudoers
+# Uncomment >  # %wheel ALL=(ALL:ALL) ALL
+```
 
 ## Update Pacman
 ```
 pacman -Syyu
 ```
-
 
 
 ## Desktop
