@@ -187,16 +187,17 @@ whichKey.add({
 	{ "<leader>dj", increment_min_severity(-1), desc = "Decrease min diagnostic severity" },
 })
 
+-- BROKEN WITH NEW TREESITTER MOVE/CLOSING
 -- TreeSitter (incremental_selection)
-local inc_sel = require("nvim-treesitter.incremental_selection")
-whichKey.add({
-	mode = { "n", "v" },
-	{ "<leader>v", group = "Incremental Selection" },
-	{ "<leader>vv", inc_sel.init_selection, desc = "Init selection" },
-	{ "<leader>vn", inc_sel.node_incremental, desc = "Increment node" },
-	{ "<leader>vc", inc_sel.scope_incremental, desc = "Increment scope" },
-	{ "<leader>vN", inc_sel.node_decremental, desc = "Decrement node" },
-})
+-- local inc_sel = require("nvim-treesitter.incremental_selection")
+-- whichKey.add({
+--   mode = { "n", "v" },
+--   { "<leader>v",  group = "Incremental Selection" },
+--   { "<leader>vv", inc_sel.init_selection,         desc = "Init selection" },
+--   { "<leader>vn", inc_sel.node_incremental,       desc = "Increment node" },
+--   { "<leader>vc", inc_sel.scope_incremental,      desc = "Increment scope" },
+--   { "<leader>vN", inc_sel.node_decremental,       desc = "Decrement node" },
+-- })
 
 -- Code Folding (ufo)
 whichKey.add({

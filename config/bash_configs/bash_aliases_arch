@@ -1,0 +1,4 @@
+# Alias definitions.
+if [ -f ~/.chillDevEnv/config/bash_configs/bash_aliases_all ]; then
+    . ~/.chillDevEnv/config/bash_configs/bash_aliases_all
+fi

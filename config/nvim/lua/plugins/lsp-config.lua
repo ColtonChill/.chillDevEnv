@@ -25,12 +25,12 @@ return {
       require("mason-lspconfig").setup({
         ensure_installed = {
           "lua_ls",
-          "bashls",
+          -- "bashls",
           "pylsp",
-          "jsonls",
+          -- "jsonls",
           "clangd",
-          "cmake",
-          "intelephense",
+          -- "cmake",
+          -- "intelephense",
         },
       })
     end,
@@ -43,13 +43,13 @@ return {
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
       local opts = { capabilities = capabilities }
       -- These are needed for each language you want support for.
-      lspconfig.lua_ls.setup(opts)
-      lspconfig.bashls.setup(opts)
-      lspconfig.pylsp.setup(opts)
-      lspconfig.jsonls.setup(opts)
-      lspconfig.clangd.setup(opts)
-      lspconfig.cmake.setup(opts)
-      lspconfig.intelephense.setup(opts)
+      -- lspconfig.lua_ls.setup(opts)
+      -- lspconfig.bashls.setup(opts)
+      -- lspconfig.pylsp.setup(opts)
+      -- lspconfig.jsonls.setup(opts)
+      -- lspconfig.clangd.setup(opts)
+      -- lspconfig.cmake.setup(opts)
+      -- lspconfig.intelephense.setup(opts)
     end,
   },
   --------------------------------

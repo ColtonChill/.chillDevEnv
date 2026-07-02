@@ -108,6 +108,28 @@ options root=UUID=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx rw
 ```
 Reboot and see if you get in
 
+### Use custom keyboard
+```bash
+sudo mkdir -p /usr/local/share/kbd/keymaps/
+sudo cp /usr/share/kbd/keymaps/i386/qwerty/us.map.gz /usr/local/share/kbd/keymaps/swapCapsEsc.map.gz
+# Modify keyboard layout
+cd /usr/local/share/kbd/keymaps
+gunzip swapCapsEsc.map.gz
+vim swapCapsEsc.map
+"""
+keycode 1 = Caps_Lock
+keycode 58 = Escape
+"""
+gzip swapCapsEsc.map
+# Set it as the default by editing/creating /etc/vconsole.conf
+vim /etc/vconsole.conf
+"""
+KEYMAP=capsesc
+"""
+# Test keymap
+loadkeys swapCapsEsc.map.gz
+```
+
 ## Setup User space
 
 ### Set default editor
@@ -167,8 +189,8 @@ makepkg -si
 ### Common Packages
 ```bash
 # Terminal stuff
-sudo pacman -S neovim tmux ghostty git
-sudo pacman -S openssh htop
+sudo pacman -S zsh neovim tmux ghostty starship
+sudo pacman -S git openssh htop
 ```
 
 ## GPU 
@@ -212,7 +234,8 @@ sudo pacman -S hyprpaper
 # Notifications: dunst or swaync
 sudo pacman -S dunst
 # Audio
-sudo pacman -S pipewire
+sudo pacman -S pipewire pipewire-audio pipewire-alsa pipewire-pulse pipewire-jack wireplumber
+systemctl --user enable --now pipewire pipewire-pulse wireplumber
 # Clipboard
 sudo pacman -S wl-clipboard
 # Screen sharing/Portals
@@ -258,25 +281,6 @@ sudo pacman -S steam
 ```
 
 
-### Use custom keyboard
-
-#### Add custom keyboard layout
-```bash
-mkdir -p /usr/local/share/kbd/keymaps/
-# Make a new keyboard layout
-cat > /usr/local/share/kbd/keymaps/capsesc.map << EOF
-keymaps 0-127
-keycode 1 = Caps_Lock
-keycode 58 = Escape
-EOF
-# Set it as the default by editing/creating /etc/vconsole.conf
-cat > /etc/vconsole.conf << EOF
-KEYMAP=capsesc
-EOF
-
-localectl set-keymap --no-convert capsesc
-loadkeys capsesc
-```
 
 
 localectl set-x11-keymap us "" "" "caps:swapescape

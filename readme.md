@@ -4,11 +4,13 @@
 
 ## Link config files
 ```bash
-ln -s ~/.chillDevEnv/nvim/ ~/.config/nvim
-ln -s ~/.chillDevEnv/tmux.conf ~/.tmux.conf
-ln -s ~/.chillDevEnv/bash_aliases ~/.bash_aliases
-ln -s ~/.chillDevEnv/ghostty ~/.config/ghostty
+ln -s ~/.chillDevEnv/config/nvim ~/.config/nvim
+ln -s ~/.chillDevEnv/config/tmux.conf ~/.config/tmux.conf
+ln -s ~/.chillDevEnv/config/ghostty ~/.config/ghostty
+ln -s ~/.chillDevEnv/config/hypr ~/.config/hypr
 ln -s ~/.chillDevEnv/notes ~/notes
+ln -s ~/.chillDevEnv/config/bash_configs/bashrc_arch .bashrc
+ln -s ~/.chillDevEnv/config/bash_configs/bash_aliases_arch .bash_aliases
 ```
 
 ## Install Tmux package mangager

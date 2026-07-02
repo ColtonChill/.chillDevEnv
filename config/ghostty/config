@@ -1,0 +1,26 @@
+# Run `ghostty +show-config --default --docs` to view a list of
+# all available config options and their default values.
+#
+# Additionally, each config option is also explained in detail
+# on Ghostty's website, at https://ghostty.org/docs/config.
+#
+
+# `ghostty +list-keybinds` for a full list
+# Split ghostty
+keybind = alt+one=unbind
+keybind = alt+two=unbind
+keybind = alt+three=unbind
+keybind = alt+four=unbind
+keybind = alt+five=unbind
+
+#keybind = ctrl+k=new_split:up
+#keybind = ctrl+j=new_split:down
+#keybind = ctrl+h=new_split:left
+#keybind = ctrl+l=new_split:right
+# For a list of themes, run `ghostty +list-themes`
+theme = "Dark Pastel"
+# theme = "Dark Modern"
+# theme = "Dark+
+#
+# Ctrl+Shift+, to reload config
+

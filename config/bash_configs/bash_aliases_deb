@@ -1,16 +1,7 @@
-# some more ls aliases
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
-alias ip='ip -c'
-alias ipa='ip -br a'
-alias ipl='ip -br l'
-alias ipr='ip -br r'
-# alias markdown ='grip -b'
-alias tarball='tar -czvf'
-alias untar='tar -xzvf'
-alias tarpeak='tar -ztvf'
-alias vim='nvim'
+# Alias definitions.
+if [ -f ~/.chillDevEnv/bash_configs/.bash_aliases_all ]; then
+    . ~/.chillDevEnv/bash_configs/.bash_aliases_all
+fi
 
 # Sigma Building
 alias cmake_deb_de='cmake -D DEBIAN_BUILD=true -D CMAKE_BUILD_TYPE=Debug -D SIGMA_BUILD_DOC=OFF -D CMAKE_EXPORT_COMPILE_COMMANDS=ON ../'
