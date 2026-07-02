@@ -23,3 +23,12 @@ Build an engine with sigma utility
 ### Examine a Network/model
 `netron`
 
+```
+./Utilities/inferenceBenchmarker/inferenceBenchmarker \
+  -s ~/work/sigma/modules/sdl-tensorrt/Tests/sdl-tensorrt-testdata/models/yolo11n.onnx_spec.json \
+  -d ~/work/sigma/modules/sdl-tensorrt/Tests/sdl-tensorrt-testdata/COCO/val/images/ \
+  -t ~/work/sigma/modules/sdl-tensorrt/Tests/sdl-tensorrt-testdata/COCO/val/labels/ \
+  -r ~/work/sigma/modules/sdl-tensorrt/Tests/sdl-tensorrt-testdata/COCO/rubrics/val.txt \
+  -o ~/Downloads/AI_output/TMX_report/unit_test \
+  -c 0.1
+```

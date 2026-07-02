@@ -3,7 +3,7 @@
 python3.10 -m venv .python-venv
 ```
 
-### How to activeate the python version
+### How to activate the python version
 ```
 VIRTUAL_ENV_DISABLE_PROMPT=1
 if [ -f "$HOME/.python-venv/bin/activate" ]; then

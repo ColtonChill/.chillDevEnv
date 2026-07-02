@@ -4,7 +4,7 @@
 
 ### Prep VM for migration
 ```bash
-# shutdown vm (if not already)
+# shutdown VM (if not already)
 incus stop opnSense-vm
 # change storage (see: "incus storage list" on host)
 incus profile edit router # set pool: zfs-incus
@@ -12,9 +12,9 @@ incus config device set opnSense-vm eth-wan parent=enp6s0f0
 ```
 
 ### Add networking devices to new host
-(see (router-vm networking)[./router-vm.md###Set up network inferfaces])
+(see (router-VM networking)[./router-vm.md###Set up network inferfaces])
 ```bash
-# Set up lan bridge
+# Set up LAN bridge
 incus network create br-lan --type=bridge \
   ipv4.address=none \
   ipv6.address=none
@@ -33,7 +33,7 @@ incus remote add [my-remote] ip:8765
 
 ## Migrate VM on Old Host
 ```bash
-# Copy over profile and then the vm
+# Copy over profile and then the VM
 incus profile copy router node:router
 incus move opnSense-vm node:opnSense-vm --storage zfs-incus --mode push
 ```

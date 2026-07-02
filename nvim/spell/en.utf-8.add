@@ -8,7 +8,7 @@ io
 idx
 RGB
 BGR
-TODO
+todo
 ai
 enum
 str
@@ -23,7 +23,7 @@ cuda
 hardcoded
 ATR
 NMS
-Unpad
+unpad
 sigmoid
 detections
 bitmask
@@ -61,7 +61,11 @@ zpool
 jellyfin
 nextcloud
 bootloader
-Uncomment
 uncomment
 hyprland
 wayland
+vm
+runtime
+polymorphism
+backend
+submodule

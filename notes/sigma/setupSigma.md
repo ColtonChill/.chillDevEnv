@@ -2,39 +2,30 @@
 1. Install latest tsb-extern
 2. 
     ```
+    sudo apt install -y ca-certificates curl gnupg
     curl -fsSL https://apt.kitware.com/keys/kitware-archive-latest.asc | sudo gpg --dearmor -o /usr/share/keyrings/kitware-archive-keyring.gpg
 
-    cat <<EOF | sudo tee /etc/apt/sources.list.d/kitware.sources
-    Types: deb
-    URIs: https://apt.kitware.com/ubuntu
-    Suites: jammy
-    Components: main
-    Architectures: $(dpkg --print-architecture)
-    Signed-By: /usr/share/keyrings/kitware-archive-keyring.gpg
-    EOF
+    echo 'deb [signed-by=/usr/share/keyrings/kitware-archive-keyring.gpg] https://apt.kitware.com/ubuntu/ noble main' | sudo tee /etc/apt/sources.list.d/kitware.list
 
     sudo apt update && sudo apt install cmake
     ```
 3.  
     ```
-    sudo apt install libjpeg-dev libpng-dev libcurl4-gnutls-dev libssl-dev libtiff5-dev openjdk-8-jdk-headless
+    sudo apt install gcc g++ git libmariadb-dev libicu-dev bash-completion
+    sudo apt install libjpeg-dev libpng-dev libcurl4-gnutls-dev libssl-dev libtiff5-dev openjdk-25-jdk
     ```
 4. add `net.core.wmen=2097512` to `/etc/sysctl.conf`
 
-
-## Jetpack
-1. `sudo apt install ./tsb-extern.deb`
-2. `sudo apt install mariadb-client mariadb-server`
-2. `sudo apt install libmariadb3`
-2. `sudo apt install ./sigma.deb`
-
 ### Building tsb-extern
 
-Install on Ubuntu host
+## Ubuntu 
 ```
-### REMOVE ME (I'm a lie)
-sudo apt install libbsd-dev
+sudo apt install cuda-toolkit-11-8 cudnn tensorrt-libs tensorrt-dev libnvinfer-dev libnvinfer-bin
+sudo apt install cuda
 ```
+
+
+
 
 ## Rocky
 ```
@@ -54,17 +45,26 @@ dnf install cuda-toolkit-11-8 cudnn tensorrt-libs tensorrt-devel libnvinfer-deve
 # write to .bashrc
 export PATH="$PATH:/usr/local/cuda/bin"
 ```
+#### Cuda (runtime)
+```bash
+sudo dnf -y module install nvidia-driver:open-dkms
+```
 
 ### tsb-extern
-```
-dnf install libuuid-devel libusbx-devel rpm-build
+```bash
+dnf install openh264-devel
+dnf install libuuid-devel libusbx-devel rpm-build cyrus-sasl-devel
+# Maybe needed for "fastdds_Release" for the time being
+dnf -y install bison
+dnf install https://mirrors.rpmfusion.org/free/el/rpmfusion-free-release-$(rpm -E %rhel).noarch.rpm
+dnf install https://mirrors.rpmfusion.org/nonfree/el/rpmfusion-nonfree-release-$(rpm -E %rhel).noarch.rpm
+dnf clean all
+dnf makecache
+dnf install foonathan-memory-devel
 ```
 
 #### Nice things
 * Helps find packages via (`dnf provides */name.h`)
-  `dnf-utils`
-* Tab completion
-  `bash-completion`
-* cmake re-building tools/helpers
-  `libtool automake`
-
+```
+dnf install dnf-utils bash-completion libtool automake
+```
