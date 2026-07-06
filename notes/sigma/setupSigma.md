@@ -13,6 +13,7 @@
     ```
     sudo apt install gcc g++ git libmariadb-dev libicu-dev bash-completion
     sudo apt install libjpeg-dev libpng-dev libcurl4-gnutls-dev libssl-dev libtiff5-dev openjdk-25-jdk
+    sudo apt install libsystemd-dev
     ```
 4. add `net.core.wmen=2097512` to `/etc/sysctl.conf`
 

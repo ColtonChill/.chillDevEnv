@@ -3,24 +3,30 @@
 #
 # Additionally, each config option is also explained in detail
 # on Ghostty's website, at https://ghostty.org/docs/config.
-#
+
+# Turn off auto copy on select, fights with tmux
+copy-on-select = false
 
 # `ghostty +list-keybinds` for a full list
+
 # Split ghostty
 keybind = alt+one=unbind
 keybind = alt+two=unbind
 keybind = alt+three=unbind
 keybind = alt+four=unbind
 keybind = alt+five=unbind
-
 #keybind = ctrl+k=new_split:up
 #keybind = ctrl+j=new_split:down
 #keybind = ctrl+h=new_split:left
 #keybind = ctrl+l=new_split:right
+
 # For a list of themes, run `ghostty +list-themes`
 theme = "Dark Pastel"
-# theme = "Dark Modern"
-# theme = "Dark+
-#
+theme = "Builtin Tango Dark"
+#palette = 2=#00a000
+#background = #000000
+
+# theme = "Builtin Tango Light"
+
 # Ctrl+Shift+, to reload config
 

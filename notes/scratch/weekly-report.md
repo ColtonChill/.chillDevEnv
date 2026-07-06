@@ -49,3 +49,20 @@ New problems/tickets to
   - We got him able to run it on his host for now, but a container is better long term.
 
 
+///////////////////////////////////////////////////////
+
+Good morning all, 
+Last week was relatively fruitful. TLDR; I was able to fix Dan's error building sigma-cuda on his host, and fixed the new model export issue for SWAAMII.
+
+Successes:
+- TMX:
+  - Got Dan's compatibility patch for sdl-tensorrt tested on rocky9, jetpack5, ubunt
+  - Had a problem getting the current training servers to train the new model.^J  -
+  - SensorPath End-2-End testing^J
+
+Current work:
+  - SensorPath End-2-End Test
+  - Work on model daisy-chaining 
+
+New problems/tickets to work
+  - f

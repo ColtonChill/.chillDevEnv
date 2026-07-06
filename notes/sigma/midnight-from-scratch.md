@@ -71,9 +71,9 @@ pip install "conan<2.0"
 
 ### Copy Version.txt & FindTsbExtern.cmake
 ```
-cp ~/shared/sigma/_build-rocky9-release/Version.txt ~/shared/sigma/_build-rocky9-release/dist/Version.txt
-mkdir ~/shared/sigma/_build-rocky9-release/dist/Modules
-cp ~/shared/sigma/toolchains/Modules/FindTsbExtern.cmake ~/shared/sigma/_build-rocky9-release/dist/Modules/FindTsbExtern.cmake
+cp ~/shared/sigma/_build_rocky_release/Version.txt ~/shared/sigma/_build_rocky_release/dist/Version.txt
+mkdir ~/shared/sigma/_build_rocky_release/dist/Modules
+cp ~/shared/sigma/toolchains/Modules/FindTsbExtern.cmake ~/shared/sigma/_build_rocky_release/dist/Modules/FindTsbExtern.cmake
 ```
 
 ### Link Sigma ICD 
@@ -81,13 +81,13 @@ cp ~/shared/sigma/toolchains/Modules/FindTsbExtern.cmake ~/shared/sigma/_build-r
 # Inside the container, replace the mock sigma server in midnight with the real thing
 cd /root/shared/midnight/Midnight-Translation-Server
 rm -rf sigma-icd
-ln -s /root/shared/sigma/_build-rocky9-release/dist sigma-icd
+ln -s /root/shared/sigma/_build_rocky_release/dist sigma-icd
 ```
 
 ### Build midnight
 ```
 cd /root/shared/midnight/Midnight-Translation-Server/build
-cmake -DCMAKE_BUILD_TYPE=Release ..
+cmake -D CMAKE_BUILD_TYPE=Release -D CMAKE_POLICY_VERSION_MINIMUM=3.5 ..
 make -j8
 ```
 

@@ -5,7 +5,7 @@
 ## Link config files
 ```bash
 ln -s ~/.chillDevEnv/config/nvim ~/.config/nvim
-ln -s ~/.chillDevEnv/config/tmux.conf ~/.config/tmux.conf
+ln -s ~/.chillDevEnv/config/tmux.conf ~/.config/tmux/tmux.conf
 ln -s ~/.chillDevEnv/config/ghostty ~/.config/ghostty
 ln -s ~/.chillDevEnv/config/hypr ~/.config/hypr
 ln -s ~/.chillDevEnv/notes ~/notes
@@ -13,11 +13,11 @@ ln -s ~/.chillDevEnv/config/bash_configs/bashrc_arch .bashrc
 ln -s ~/.chillDevEnv/config/bash_configs/bash_aliases_arch .bash_aliases
 ```
 
-## Install Tmux package mangager
+## Install Tmux package manager
 ```
 sudo apt install tmux
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-tmux source ~/.tmux.conf
+tmux source ~/.config/tmux.conf
 ```
 Run tmux, update using `\<leader\> I`, then restart tmux
 
@@ -109,7 +109,7 @@ vim .git/info/exclude
 * Install gcc, g++, cmake, clang, clangd, clang-tidy, llvm, ccls
 * `clangd`: c/c++ LSP
 
-### Keyboard remappings
+### Keyboard re-mappings
 ```
 # Gnome-tweaks
 sudo apt install gnome-tweaks
