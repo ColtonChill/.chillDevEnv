@@ -172,3 +172,9 @@ crontab -u www-data -l
 ```
 
 ### PHP-FPM
+
+## SpotifySync
+```
+incus config device add nextcloud spotifySync_src disk path=/root/spotifyScripts source='/home/chill/work/spotifyScripts'
+```
+

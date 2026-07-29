@@ -22,7 +22,7 @@ keybind = alt+five=unbind
 
 # For a list of themes, run `ghostty +list-themes`
 theme = "Dark Pastel"
-theme = "Builtin Tango Dark"
+# theme = "Builtin Tango Dark"
 #palette = 2=#00a000
 #background = #000000
 

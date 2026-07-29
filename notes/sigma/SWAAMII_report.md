@@ -49,7 +49,9 @@ Opterra:
 shares/C4ISR_SAB_Data/SIFT/SIFT-D/AI/EO/Opterra/4_Datasets
 
 Shaheed: 
-shares/C4ISR_SAB_Data/SIFT/SIFT-D/AI/EO/Shaheed/4_Datasets/GoldenDataset/20250603_YOLODataset
+shares/C4ISR_SAB_Data/SIFT/SIFT-D/AI/EO/Shaheed/4_Datasets/GoldenDataset/20250603_YOLODataset/
+shares/C4ISR_SAB_Data/SIFT/SIFT-D/AI/EO/Shaheed/4_Datasets/GoldenDataset/20250528_YOLODataset
+shares/C4ISR_SAB_Data/SIFT/SIFT-D/AI/EO/Shaheed/4_Datasets/GoldenDataset/Base_YOLODataset
 
 Swaamii:
 shares/C4ISR_SAB_Data/SWAAMII/AI/1_data/2_To_Train
@@ -92,11 +94,9 @@ python ~/Dev/yolo_train_scripts/train_scripts/yolo_train.py \
 
 ## Testing results
 ```bash
-# RAW
 ./Utilities/inferenceBenchmarker/inferenceBenchmarker \
-  -s ~/Downloads/models/SWAAMII/SWAAMII_EO_yolo11n_raw_20260623_detect_trt.onnx_spec.json \
-  -d ~/Downloads/dataset/SWAAMII/images/test/ \
-  -t ~/Downloads/dataset/SWAAMII/labels/test/ \
+  -s ~/work/ai/models/SWAAMII/SWAAMII_EO_yolo11n_swaamii_shaheed_v2_20260715_detect.onnx_spec.json \
+  -d ~/work/ai/dataset/AtrVideo_20260715_174919_543/AtrVideo_20260715_174919_543.ts \
   -o ~/Downloads/AI_output/SWAAMII/ \
   -c 0.01
 # MERGE
@@ -106,18 +106,30 @@ python ~/Dev/yolo_train_scripts/train_scripts/yolo_train.py \
   -t ~/Downloads/dataset/SWAAMII/labels/test/ \
   -o ~/Downloads/AI_output/SWAAMII/ \
   -c 0.01
-# MINI NON TRT
-./Utilities/inferenceBenchmarker/inferenceBenchmarker \
-  -s ~/Downloads/models/SWAAMII/SWAAMII_EO_yolo11n_total_20260623_detect.onnx_spec.json \
-  -d ~/Downloads/dataset/captureVidAngelA_20260527_175243_437/images/ \
-  -t ~/Downloads/dataset/captureVidAngelA_20260527_175243_437/labels/ \
-  -o ~/Downloads/AI_output/SWAAMII/ \
-  -c 0.01
-# MIN TRT_VERSION
-./Utilities/inferenceBenchmarker/inferenceBenchmarker \
-  -s ~/Downloads/models/SWAAMII/total_trt.onnx_spec.json \
-  -d ~/Downloads/dataset/captureVidAngelA_20260527_175243_437/images/ \
-  -t ~/Downloads/dataset/captureVidAngelA_20260527_175243_437/labels/ \
-  -o ~/Downloads/AI_output/SWAAMII/ \
-  -c 0.01
 ```
+
+
+
+### New sans-optera data
+
+4. copy_to_server and fold to dataset together combine_partition_dataset.py
+```bash
+# cd shares/C4ISR_SAB_Data/SIFT/SIFT-D/AI/EO/Shaheed/4_Datasets/GoldenDataset/
+rsync -azPv 20250603_YOLODataset/* train-server1:/opt/ai_data/20250603_Shaheed_Data/YOLODataset/
+cd ~/Dev/dataprephelper/DATASET_MANIPULATION
+python ~/Dev/dataprephelper/DATASET_MANIPULATION/combine_partitioned_data.py \
+       -d /opt/ai_data/20250622_Swaamii_Data/YOLODataset \
+       -d /opt/ai_data/20250528_Shaheed_Data/YOLODataset \
+       -d /opt/ai_data/20250603_Shaheed_Data/YOLODataset \
+       -d /opt/ai_data/Base_Shaheed_Data/YOLODataset \
+       -o /opt/ai_data/Swaamii_Shaheed_merge
+```
+
+5. update `cfg.yaml` and `dataset.yaml`
+
+6. Train with tmux/screen
+```bash
+python ~/Dev/yolo_train_scripts/train_scripts/yolo_train.py \
+    --config_file /opt/ai_data/Swaamii_Shaheed_merge/YOLODataset/cfg.yaml
+```
+

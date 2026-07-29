@@ -34,24 +34,22 @@ nmcli connection add type ethernet con-name host-br0 ifname eth1 autoconnect yes
 
 ### Set up shared disk
 ```bash
-incus config device add <container> sigma_src disk path=/root/shared/sigma source='/home/chill/work/sigma'
+incus config device add <container> sigma_src disk path=/root/shared/sigma source='/home/<user>/work/sigma'
 incus config set <container> security.privileged true
-incus config set <container> security.nesting true
-# if rocky9
-incus config set <container> raw.lxc 'lxc.apparmor.profile=unconfined'
-incus config set <container> security.apparmor.unconfined true
 ```
 
 
 ### For Nesting containers
 ```bash
 incus config set <container> security.nesting true
-incus config set <container> raw.lxc "
-lxc.apparmor.profile = unconfined
-lxc.cgroup.devices.allow = a
-lxc.mount.auto = cgroup:rw
-lxc.cap.drop =
-"
+
+# In host manchine
+sudo vi /etc/default/grub
+# Add/replace this line
+GRUB_CMDLINE_LINUX_DEFAULT="quiet splash systemd.unified_cgroup_hierarchy=0"
+# Then update grup and reboot
+sudo update-grub
+then reboot
 ```
 
 #### Remove the share

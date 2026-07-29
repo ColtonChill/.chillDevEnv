@@ -1,5 +1,7 @@
 Raw API endpoint:
   - http://e16571:8013/v1
+GUI:
+  - http://e16571:3000
 Model: 
   - openai/gpt-oss-120b
 

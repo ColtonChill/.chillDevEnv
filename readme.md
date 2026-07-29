@@ -5,19 +5,20 @@
 ## Link config files
 ```bash
 ln -s ~/.chillDevEnv/config/nvim ~/.config/nvim
+mkdir -p ~/.config/tmux
 ln -s ~/.chillDevEnv/config/tmux.conf ~/.config/tmux/tmux.conf
 ln -s ~/.chillDevEnv/config/ghostty ~/.config/ghostty
 ln -s ~/.chillDevEnv/config/hypr ~/.config/hypr
 ln -s ~/.chillDevEnv/notes ~/notes
-ln -s ~/.chillDevEnv/config/bash_configs/bashrc_arch .bashrc
-ln -s ~/.chillDevEnv/config/bash_configs/bash_aliases_arch .bash_aliases
+ln -s ~/.chillDevEnv/config/bash_configs/bashrc_arch ~/.bashrc
+ln -s ~/.chillDevEnv/config/bash_configs/bash_aliases_arch ~/.bash_aliases
 ```
 
 ## Install Tmux package manager
 ```
 sudo apt install tmux
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-tmux source ~/.config/tmux.conf
+tmux source ~/.config/tmux/tmux.conf
 ```
 Run tmux, update using `\<leader\> I`, then restart tmux
 
@@ -68,6 +69,11 @@ settings-->keyboard-->shortcuts
 ```
 
 ## Random Support files
+### Image viewing
+```
+sudo apt install imagemagick
+```
+
 ### Clipboard Stuff
 ```
 sudo apt install xsel
@@ -97,12 +103,18 @@ wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
 https://github.com/nvm-sh/nvm
 ```
 
+### Prettier
+```
+npm install -g @fsouza/prettierd
+```
+
 ### Local Git Ignore
 You need this for ignoring the `.cache` file that neovim makes without changing the remote .gitignore
 ```
 vim .git/info/exclude
 # Ignore nvim files
 .cache/
+compile_commands.json
 ```
 
 ### C++ Diagnostics
