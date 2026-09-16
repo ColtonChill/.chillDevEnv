@@ -65,7 +65,7 @@ python ~/Dev/dataprephelper/DATASET_MANIPULATION/combine_partitioned_data.py \
 6. Train with tmux/screen
 ```bash
 python ~/Dev/yolo_train_scripts/train_scripts/yolo_train.py \
-    --config_file /opt/ai_data/Swaamii_Opterra_Shaheed_merge/YOLODataset/cfg.yaml
+    --config_file /opt/ai_data/Swaamii_Shaheed_merge_v2/YOLODataset/cfg.yaml
 ```
 
 ## Testing results

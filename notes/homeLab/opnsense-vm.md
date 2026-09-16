@@ -70,22 +70,22 @@ ip -br -c a
 # or
 nmcli d
 # Example:
-# --- enp4s0f0 (modem/WAN)
-# --- enp4s0f1 (switch/LAN)
+# --- enp6s0f0 (modem/WAN)
+# --- enp6s0f1 (switch/LAN)
 ```
 #### Allocate interfaces
 ```bash
 # WAN
 incus config device add opnSense-vm eth-wan nic \
   nictype=macvlan \
-  parent=enp4s0f0
+  parent=enp6s0f0
 
 # LAN (create managed incus bridge for lan interface)
 incus network create br-lan --type=bridge \
   ipv4.address=none \
   ipv6.address=none
 incus config device add opnSense-vm eth-lan nic network=br-lan
-incus network set br-lan bridge.external_interfaces=enp4s0f1
+incus network set br-lan bridge.external_interfaces=enp6s0f1
 
 #### Pin mac addresses for all these devices
 incus config device set opnSense-vm eth-wan  hwaddr=00:16:3e:aa:bb:01
@@ -284,8 +284,8 @@ incus config device remove opnSense-vm opnSense-volume
 ### VM not getting the modem's public IP?
 Tell the network manager to knock it off.
 ```
-nmcli dev disconnect enp4s0f0
-nmcli dev set enp4s0f0 managed no
+nmcli dev disconnect enp6s0f0
+nmcli dev set enp6s0f0 managed no
 ```
 Restart both the modem and the vm.
 

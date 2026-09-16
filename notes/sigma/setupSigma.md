@@ -43,7 +43,7 @@ sudo apt-get update
 
 sudo apt install cuda-toolkit-12-9 cudnn tensorrt-libs tensorrt-dev libnvinfer-dev libnvinfer-bin
 sudo apt install cuda-12-9
-sudo apt install nvidia-open
+sudo apt install nvidia-open # cuda-drivers
 ```
 
 
@@ -51,7 +51,7 @@ sudo apt install nvidia-open
 ## Rocky
 ```
 dnf install epel-release
-dnf install gcc g++ git vim openssh-server openssl-devel java-openjdk-headless libtiff-devel curl-devel libpng-devel MariaDB-devel libjpeg-turbo-devel
+dnf install gcc git vim openssh-server openssl-devel java-openjdk-headless libtiff-devel curl-devel libpng-devel MariaDB-devel libjpeg-turbo-devel
 
 ### Might need this (tsb-extern experiments)???
 dnf install libicu-devel
