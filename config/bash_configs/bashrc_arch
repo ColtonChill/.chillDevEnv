@@ -32,3 +32,8 @@ PS1='[\u@\h \W]\$ '
 # esac
 #
 eval "$(starship init bash)"
+
+export PATH=$PATH:/home/chill/.cargo/bin
+
+# uv
+export PATH="/home/chill/.local/bin:$PATH"

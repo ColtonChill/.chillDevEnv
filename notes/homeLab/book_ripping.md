@@ -30,6 +30,11 @@ authcode:         d5fdb229
 ## Firefox addon
 [Libby Download](https://addons.mozilla.org/en-US/firefox/addon/libby-download/)
 
+# Torrent
+https://audiobookbay.lu
+```
+magnet:?xt=urn:btih:<HASH>
+```
 
 ## Convert mp3 to m4b
 For a single mp3
@@ -40,6 +45,8 @@ ffmpeg -i input.mp3 \
   -c:a libfdk_aac -vbr 3 \
   -c:v copy \
   -disposition:v attached_pic \
+  -fflags +genpts \
+  -movflags +faststart \
   output.m4b
 ```
 For multiple, make a text file of mp3's
@@ -60,7 +67,7 @@ ffmpeg \
   -c:v copy \
   -disposition:v attached_pic \
   -fflags +genpts \
-  -movflags +faststart \         # needed for phones to play nice
+  -movflags +faststart \
   output.m4b
 ```
 

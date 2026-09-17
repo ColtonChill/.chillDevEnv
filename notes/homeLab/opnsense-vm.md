@@ -177,7 +177,13 @@ incus console opnSense-vm --type vga
       * Upstream Port = Port of service
       * description = "example handler"
 
-TODO: figure out NAT hairpinning
+### NAT Hairpinning via Split DNS
+* Services → Unbound DNS → Overrides → Host Overrides
+* Add new entry
+    * Host = (leave blank)
+    * Domain = cchill.org
+    * Type = A record
+    * IP = OPNsense's LAN IP (192.168.1.1)
 
 ### OpenVpn
 * port: 1194
