@@ -34,3 +34,10 @@ cat testPathJsonMsgPretty.json | nc -u 127.0.0.1 26202
 
 you should see the SIGMA output a new blue output message something along the lines of 'routing to LEADIN'.  That means you successfully got the SIGMA node routed to fly the path you sent.  The path message I sent you has 4 waypoints.  Node the 'Type' field in each waypoint.  The waypoint type to number conversion is in section 2.4.5 of the path planning ICD.  The first waypoint needs to be type 1, or a LEADIN type.  Waypoints between the LEADIN and the START are typically INTERMEDIATE points.  The START point is when the sensor should actually turn on.  Waypoints between START and STOP are typically INTERMEDIATE points.  The STOP waypoint is when the sensor should turn off.  Waypoints between STOP and LEADOUT are typically INTERMEDIATE.  The LEADOUT is the last waypoint.  We typically give some space between the LEADIN and START to give the platform some time in a straight line to get stable prior to turning on the sensor.  We also typically give some LEADOUT time so that as the sensor turns off the platform is still flying straight and stable and to give any detections time to get through the system.  We typically have this be a config item in the SIGMA Json that gets run.  For you, you could either hard code the LEADIN and LEADOUT, or have it be a command line setting when starting your python application.  Don't worry much about the LEADIN and LEADOUT for now, just know it is there.
 
+## Colton's procedure
+1. Inside sigma
+   ./Utilities/interactor -j testCameraGimbalSimple.json
+3. From the subtopic, listen for the execution set
+  Get the ExecutionPlans.Collection.Uuid
+
+7d46e11e-fb10-45e3-bd25-379c57592059

@@ -2,7 +2,7 @@
 
 ### Set up incus-docker container
 ```
-incus launch images:debian/14 openhands
+incus launch images:ubuntu/24.04 openhands
 
 # incus config set openhands security.nesting=true
 # only needed if your storage pool is ZFS/BTRFS:
@@ -26,6 +26,14 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 node --version
 npm --version
 uv --version
+
+# append to .bashrc
+export OH_BIND_HOST=0.0.0.0
+export LOCAL_BACKEND_API_KEY="****"
+export OH_SECRET_KEY="****"
+export OPENAI_API_KEY="dummy"
+
+
 
 # install openhands
 npm install -g @openhands/agent-canvas 

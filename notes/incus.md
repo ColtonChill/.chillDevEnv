@@ -51,6 +51,10 @@ GRUB_CMDLINE_LINUX_DEFAULT="quiet splash systemd.unified_cgroup_hierarchy=0"
 sudo update-grub
 then reboot
 ```
+#### For docker inside incus
+```
+incus config set opencode-docker raw.lxc "lxc.apparmor.profile = unconfined"
+```
 
 #### Remove the share
 incus config device remove rockyJenkins shared
